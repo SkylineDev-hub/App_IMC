@@ -11,31 +11,33 @@ export default function App() {
   [text, setText] = useState("IMC");
 
   function calcIMC(){
-    const peso_ = Number(peso);
-    const altura_ = Number(altura)/100;
-    const imc = peso_/((altura_)*(altura_));
-    if ( imc < 18.5){
-      setText("Abaixo do Peso");
-      setColor("#7FFFD4");
-    } else if ( imc >= 18.5 && imc <= 24.99) {
-      setText("Peso Ideal");
-      setColor("#00BFFF");
-    } else if ( imc >= 25 && imc <= 29.99) {
-      setText("Levemente Acima do Peso");
-      setColor("#FFA500");
-    }else if ( imc >= 30 && imc <= 34.99) {
-      setText("Obesidade Grau I");
-      setColor("#FF8C00");
-    }else if ( imc >= 35 && imc <= 39.99) {
-      setText("Obesidade Grau II");
-      setColor("#8B0000");
-    }else if ( imc >= 40) {
-      setText("Obesidade Grau III");
-      setColor("#1C1C1C");
+    if (peso != "" && altura != "") {
+      const peso_ = Number(peso);
+      const altura_ = Number(altura)/100;
+      const imc = peso_/((altura_)*(altura_));
+      if ( imc < 18.5){
+        setText("Abaixo do Peso");
+        setColor("#7FFFD4");
+      } else if ( imc >= 18.5 && imc <= 24.99) {
+        setText("Peso Ideal");
+        setColor("#00BFFF");
+      } else if ( imc >= 25 && imc <= 29.99) {
+        setText("Levemente Acima do Peso");
+        setColor("#FFA500");
+      }else if ( imc >= 30 && imc <= 34.99) {
+        setText("Obesidade Grau I");
+        setColor("#FF8C00");
+      }else if ( imc >= 35 && imc <= 39.99) {
+        setText("Obesidade Grau II");
+        setColor("#8B0000");
+      }else if ( imc >= 40) {
+        setText("Obesidade Grau III");
+        setColor("#1C1C1C");
+      }
+      setIMC(Math.round(imc));
+      setPeso("");
+      setAltura("");
     }
-    setIMC(Math.round(imc));
-    setPeso("");
-    setAltura("");
   }
 
   return (
