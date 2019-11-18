@@ -20,7 +20,7 @@ export default function Inform(props,stade){
     return(
     <View style = {styles.view}>
             <Text style = {styles.styleText}>{props.text}</Text>
-            <Text style = {styles.styleText}>{props.imc}</Text>
+            <Text style = {styles.styleText}>Indice IMC : {props.imc}</Text>
     </View>
     );
 }
