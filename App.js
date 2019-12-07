@@ -5,10 +5,10 @@ import Inform from "./components/inform";
 
 export default function App() {
   [peso, setPeso] = useState("");
-  [color, setColor] = useState("#FF4500");
+  [color, setColor] = useState("#0000ff");
   [altura, setAltura] = useState("");
-  [IMC, setIMC] = useState("-");
-  [text, setText] = useState("IMC");
+  [IMC, setIMC] = useState("");
+  [text, setText] = useState("Calculadora de IMC");
 
   function calcIMC(){
     if (peso != "" && altura != "") {
@@ -17,22 +17,22 @@ export default function App() {
       const imc = peso_/((altura_)*(altura_));
       if ( imc < 18.5){
         setText("Abaixo do Peso");
-        setColor("#7FFFD4");
+        setColor("#ff0000"); //vermelho
       } else if ( imc >= 18.5 && imc <= 24.99) {
         setText("Peso Ideal");
-        setColor("#00BFFF");
+        setColor("#008000");//verde
       } else if ( imc >= 25 && imc <= 29.99) {
         setText("Levemente Acima do Peso");
-        setColor("#FFA500");
+        setColor("#ffff40");//amarelo
       }else if ( imc >= 30 && imc <= 34.99) {
-        setText("Obesidade Grau I");
-        setColor("#FF8C00");
+        setText("Obesidade de 1° Grau");
+        setColor("#FFA500");//laranja
       }else if ( imc >= 35 && imc <= 39.99) {
-        setText("Obesidade Grau II");
-        setColor("#8B0000");
+        setText("Obesidade de 2° Grau");
+        setColor("#ff6961");//vermelho
       }else if ( imc >= 40) {
-        setText("Obesidade Grau III");
-        setColor("#1C1C1C");
+        setText("Obesidade de 3° Grau");
+        setColor("#8b0000"); //vermelho escuro
       }
       setIMC(Math.round(imc));
       setPeso("");
@@ -44,26 +44,24 @@ export default function App() {
     <KeyboardAvoidingView  enabled = {true} behavior="padding" style={styles.container}>
       <Inform bgColor = {color} text = {text} imc = {IMC}/>
       <View style={styles.form}>
-        <Text style = {styles.text}>DIGITE O SEU PESO: (kg)</Text>
         <TextInput
         value = {peso}
         keyboardType={"numeric"}
         style = {styles.input}
-        placeholder = "Peso"
-        placeholderTextColor = "#fff"
+        placeholder = 'Informe seu Peso: '
+        placeholderTextColor = "#808080"
         onChangeText = {setPeso}
         />
-        <Text style = {styles.text}>DIGITE A SUA ALTURA: (cm)</Text>
         <TextInput 
         value = {altura}
         keyboardType={"numeric"}
         style = {styles.input}
-        placeholder = "Altura"
-        placeholderTextColor = "#fff"
+        placeholder = "Informe sua Altura: "
+        placeholderTextColor = "#808080"
         onChangeText = {setAltura}
         />
         <TouchableOpacity onPress = {calcIMC} style = {styles.button}>
-          <Text style = {styles.textButton}>CALCULAR IMC</Text>
+          <Text style = {styles.textButton}> Calcular </Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -72,43 +70,38 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   form : {
     alignSelf: "stretch",
     paddingHorizontal: 20,
-    paddingTop: 20,
-    backgroundColor: "#FF4500",
+    paddingTop: 150,
+    backgroundColor: "#fff",
     height: 300,
   },
-  text : {
-    fontWeight: "bold",
-    color : "#fff",
-  },
   input : {
-    color : "#fff",
-    borderWidth : 1,
-    borderColor : "#fff",
-    backgroundColor: "#FF4500",
-    paddingHorizontal: 20,
+    color : "#808080",
+    borderBottomWidth : 1,
+    borderBottomColor: '#120a8f',
+    paddingVertical: 0,
     fontSize: 16,
     height: 44,
     marginBottom: 25,
-    borderRadius: 2
+    
   },
   button : {
-    backgroundColor : "#fff",
+    backgroundColor : "blue",
     justifyContent : "center",
     alignItems : "center",
-    borderRadius: 2,
-    marginTop: 15,
-    height: 50
+    borderRadius: 5,
+    marginTop: 180,
+    height: 50,
+    
   },
   textButton : {
-    color : "#FF4500",
-    fontWeight: "bold",
+    color : "#fff",
+    fontSize: 20
   },
   inform : {
     alignSelf: "stretch",
@@ -120,7 +113,6 @@ const styles = StyleSheet.create({
   },
   textInform : {
     color : "#fff",
-    fontWeight: "bold",
-    fontSize : 25
+    fontSize : 35
   }
 });
